@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="section-title">Productos de la categoría: {{ categoria.nombre }}</h2>
+        </div>
+    </div>
+
+    <div class="row featured__filter">
+        {% for producto in productos %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mix {{ producto.categoria }}">
+            <div class="featured__item">
+                <div class="featured__item__pic set-bg" data-setbg="{{ producto.imagen_url }}">
+                    <ul class="featured__item__pic__hover">
+                        <li><a href="{% url 'admin:tienda_producto_change' producto.id %}"><i
+                                    class="fa fa-edit"></i></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="featured__item__text">
+                    <h6><a href="producto/{{ producto.id }}">{{ producto.nombre }}</a></h6>
+                    <h5>{{ producto.categoria }}</h5>
+                    <p>Stock: {{ producto.stock }}</p>
+                    <h5>Precio: ${{ producto.precio }}</h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</div>
+{% endblock %}
